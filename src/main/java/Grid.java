@@ -46,9 +46,7 @@ public class Grid implements GridInfo, CoordInfo {
         } else return false;
     }
 
-    // FIXME: this can be renamed to 'assignCar'
     public boolean toDrive() {
-        // FIXME: is it necessary for all car to pick up the rider?
         for (int i = 0; i < CarArr.size(); i++) {
             CarArr.get(i).newRider(rider.location);
         }
@@ -99,37 +97,6 @@ public class Grid implements GridInfo, CoordInfo {
 
 
     public String toString() {
-//        System.out.print("test2");
-//        String str[][] = new String[row][col];
-//        for (int i = 0; i < str.length; i++) {
-//            for (int j = 0; j < str[i].length; j++) {
-//                if (Grid[i][j] == null) {
-//                    str[i][j] = " ";
-//                } else {
-//                    str[i][j] = Grid[i][j].getSymbol();
-//                    for (int k = 0; k < RiderArr.size(); k++) {
-//
-//                        if (RiderArr.get(k).getLocation() == Grid[i][j].getLocation()) {
-//                            str[i][j] = "R";
-//                            break;
-//                        }
-//                    }
-//                    for (int k = 0; k < CarArr.size(); k++) {
-//                        if (CarArr.get(k).getLocation() == Grid[i][j].getLocation()) {
-//                            str[i][j] = "C";
-//                            break;
-//                        }
-//                    }
-//                    for (int k = 0; k < ObstacleArr.size(); k++) {
-//                        if (ObstacleArr.get(k).getLocation() == Grid[i][j].getLocation()) {
-//                            str[i][j] = "#";
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        System.out.print("test3");
 
         String s = "=";
         for (int i = 0; i < col - 1; i++) {
@@ -139,11 +106,7 @@ public class Grid implements GridInfo, CoordInfo {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                // FIXME: Using the hint in the pdf, saying you can use getSymbol.
-                // Also there is no need to create str[][], since you are going to print them out anyway, you can just
-                // figure out what to print when you want to print, right here.
-                // See GridTest.java for testing
-                s += Grid[i][j] == null ? "." : Grid[i][j].getSymbol();
+                s += Grid[i][j] == null ? " " : Grid[i][j].getSymbol();
             }
             s += "\n";
         }

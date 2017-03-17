@@ -1,14 +1,10 @@
-/**
- * Stage I - The Coord Class
- */
 public class Coord implements java.lang.Comparable<Coord> {
     public final int row;
     public final int col;
 
     private int sign(int a) {
         if (a < 0) return -1;
-        else if (a > 0) return 1;
-        // FIXME: return 0 when a is 0
+        else if (a>0) return 1;
         else return 0;
     }
 
