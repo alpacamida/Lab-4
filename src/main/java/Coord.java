@@ -1,5 +1,3 @@
-package alpacamida;
-
 /**
  * Stage I - The Coord Class
  */

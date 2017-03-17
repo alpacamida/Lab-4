@@ -1,10 +1,8 @@
-package alpacamida;
-
 import junit.framework.TestCase;
 /**
  * A Unit Tester for Coord
  *
- * Execute `mvn clean -Dtest=alpacamida.CoordTest test`
+ * Execute `mvn clean -Dtest=CoordTest test`
  *
  * @author Philip Papadopoulos
  */
