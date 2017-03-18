@@ -8,6 +8,14 @@ public class Grid implements GridInfo, CoordInfo {
     private ArrayList<SharedCar> CarArr = new ArrayList<SharedCar>();
     private ArrayList<Obstacle> ObstacleArr = new ArrayList<Obstacle>();
 
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
     public Grid(int row, int col) {
         this.row = row;
         this.col = col;
@@ -55,10 +63,12 @@ public class Grid implements GridInfo, CoordInfo {
 
     public boolean riderLoaded(SharedCar car) {
 
-        if (rider.location.equals(car.location)) {
-            rider.pickUp(car);
-            rider = null;
-            return true;
+        if (rider != null) {
+            if (rider.location.equals(car.location)) {
+                rider.pickUp(car);
+                rider = null;
+                return true;
+            }
         }
 
         return false;

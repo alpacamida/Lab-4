@@ -8,7 +8,7 @@ public class Simulation {
         this.grid = grid;
         TimeTick clock = new TimeTick(tickMS, grid, this);
         clockingThread = new Thread(clock);
-        clockingThread.start();
+ //       clockingThread.start();
         input = new Interpreter();
         startSimulation();
 

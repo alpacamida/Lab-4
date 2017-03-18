@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class EastWestController extends CarController {
-    public EastWestController(CoordInfo oracle) {
+    public EastWestController(Grid oracle) {
         super(oracle);
     }
 
