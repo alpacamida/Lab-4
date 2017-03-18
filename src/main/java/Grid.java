@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
 public class Grid implements GridInfo, CoordInfo {
-    private int row;
-    private int col;
+    public int row;
+    public int col;
     private GridObject Grid[][];
     private Rider rider;
     private ArrayList<SharedCar> CarArr = new ArrayList<SharedCar>();
     private ArrayList<Obstacle> ObstacleArr = new ArrayList<Obstacle>();
+    GraphicsGrid graph;
 
     public int getRow() {
         return row;
@@ -20,6 +21,7 @@ public class Grid implements GridInfo, CoordInfo {
         this.row = row;
         this.col = col;
         Grid = new GridObject[row][col];
+        graph = new GraphicsGrid(row, col, 30);
     }
 
     public boolean addRider(Rider a, Coord x) {
@@ -27,6 +29,7 @@ public class Grid implements GridInfo, CoordInfo {
             rider = a;
             Grid[x.row][x.col] = a;
             a.setLocation(x);
+            graph.addGridObject(a);
             toDrive();
             return true;
         } else
@@ -38,6 +41,7 @@ public class Grid implements GridInfo, CoordInfo {
             CarArr.add(a);
             Grid[x.row][x.col] = a;
             a.setLocation(x);
+            graph.addGridObject(a);
             return true;
         } else return false;
     }
@@ -47,6 +51,7 @@ public class Grid implements GridInfo, CoordInfo {
             ObstacleArr.add(a);
             Grid[x.row][x.col] = a;
             a.setLocation(x);
+            graph.addGridObject(a);
             return true;
         } else return false;
     }
@@ -66,6 +71,7 @@ public class Grid implements GridInfo, CoordInfo {
         if (rider != null) {
             if (rider.location.equals(car.location)) {
                 rider.pickUp(car);
+                graph.removeGridObject(rider);
                 rider = null;
                 return true;
             }

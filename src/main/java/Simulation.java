@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Simulation {
     private int tickMS = 10;
     public Interpreter input;
@@ -8,8 +10,13 @@ public class Simulation {
         this.grid = grid;
         TimeTick clock = new TimeTick(tickMS, grid, this);
         clockingThread = new Thread(clock);
- //       clockingThread.start();
+        clockingThread.start();
         input = new Interpreter();
+        JFrame frame = new JFrame("Oval Sample");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.add(grid.graph);
+        frame.setSize(1000, 1000);
+        frame.setVisible(true);
         startSimulation();
 
     }
@@ -23,7 +30,7 @@ public class Simulation {
     }
 
     public void update() {
-        System.out.println(grid.toString());
+        grid.graph.repaint();
 
     }
 

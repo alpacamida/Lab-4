@@ -12,7 +12,7 @@ public class Interpreter {
 
     public void startAcceptingUserInput(Simulation simulation) {
         printHelpMessage();
-        System.out.println(simulation.grid.toString());
+        simulation.grid.graph.repaint();
         Scanner scnr = new Scanner(System.in);
         CarController controller = new EastWestController(simulation.grid);
 
@@ -56,7 +56,7 @@ public class Interpreter {
                     System.out.println("Coord " + newCoord.toString() + " has been occupied already");
                 }
             }
-            System.out.println(simulation.grid.toString());
+            simulation.grid.graph.repaint();
         }
 
     }

@@ -9,8 +9,8 @@ public class ManualController extends CarController implements KeyListener {
     SharedCar userCar;
     Coord currentDirection = new Coord (NORTH);
     int[] turns = new int[4];
-    turns[0] = 0;
-    turn
+//    turns[0] = 0;
+//    turn
 
     @Override
     public void setDefaultDirection() {
