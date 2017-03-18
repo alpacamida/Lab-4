@@ -7,6 +7,8 @@ public class EastWestController extends CarController {
         super(oracle);
     }
 
+    private Coord lastPosition;
+
     /**
      *
      */
@@ -57,11 +59,14 @@ public class EastWestController extends CarController {
 
     private Coord navigateFrom(Coord current, Coord[] preference) {
         for (Coord attempt : preference) {
-            if (oracle.coordFree(current.add(attempt))) {
+            Coord newCoord = current.add(attempt);
+            if (oracle.coordFree(newCoord) && !newCoord.equals(lastPosition) || oracle.coordRider(newCoord)) {
+                lastPosition = current;
                 return attempt;
             }
         }
         // if can't go anywhere
+        lastPosition = null;
         return ORIGIN;
     }
 

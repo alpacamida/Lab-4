@@ -3,7 +3,7 @@ public class DummyGrid extends Grid {
         super(setup.getDimension().row, setup.getDimension().col);
 
         for (Coord c : setup.getRobocars()) {
-            SharedCar carx = new SharedCar(new DummyController(this), this);
+            SharedCar carx = new SharedCar(new EastWestController(this), this);
             addCar(carx, c);
         }
 

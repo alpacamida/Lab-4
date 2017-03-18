@@ -8,4 +8,13 @@ public interface CoordInfo {
      * return false if loc is null
      */
     public boolean coordFree(Coord loc);
+
+    /**
+     * Determine if a Coordiante is a rider
+     * @param loc location to query
+     * @return true if loc is in bounds and available
+     * else false.
+     * return false if loc is null
+     */
+    public boolean coordRider(Coord loc);
 }

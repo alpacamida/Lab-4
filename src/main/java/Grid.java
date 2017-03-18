@@ -5,7 +5,6 @@ public class Grid implements GridInfo, CoordInfo {
     private int col;
     private GridObject Grid[][];
     private Rider rider;
-    private ArrayList<Rider> RiderArr = new ArrayList<Rider>();
     private ArrayList<SharedCar> CarArr = new ArrayList<SharedCar>();
     private ArrayList<Obstacle> ObstacleArr = new ArrayList<Obstacle>();
 
@@ -17,11 +16,10 @@ public class Grid implements GridInfo, CoordInfo {
 
     public boolean addRider(Rider a, Coord x) {
         if (coordFree(x)) {
-            RiderArr.add(a);
             rider = a;
             Grid[x.row][x.col] = a;
-            // FIXME: re-enable this line when controller is specified
-//            toDrive();
+            a.setLocation(x);
+            toDrive();
             return true;
         } else
             return false;
@@ -31,8 +29,6 @@ public class Grid implements GridInfo, CoordInfo {
         if (coordFree(x)) {
             CarArr.add(a);
             Grid[x.row][x.col] = a;
-            // FIXME: You should set car's location as well
-            // See Test that covers this case
             a.setLocation(x);
             return true;
         } else return false;
@@ -42,26 +38,25 @@ public class Grid implements GridInfo, CoordInfo {
         if (coordFree(x)) {
             ObstacleArr.add(a);
             Grid[x.row][x.col] = a;
+            a.setLocation(x);
             return true;
         } else return false;
     }
 
     public boolean toDrive() {
-        for (int i = 0; i < CarArr.size(); i++) {
-            CarArr.get(i).newRider(rider.location);
-        }
-
-        for (int i = 0; i < CarArr.size(); i++) {
-            CarArr.get(i).drive();
-
+        for (SharedCar car : CarArr) {
+            if (rider != null) {
+                car.newRider(rider.location);
+            }
+            car.drive();
         }
         return true;
     }
 
     public boolean riderLoaded(SharedCar car) {
 
-        if (rider.location == car.location) {
-            RiderArr.get(RiderArr.size() - 1).pickUp(car);
+        if (rider.location.equals(car.location)) {
+            rider.pickUp(car);
             rider = null;
             return true;
         }
@@ -92,7 +87,11 @@ public class Grid implements GridInfo, CoordInfo {
         if (loc.row < 0 || loc.row > (this.row - 1) || loc.col < 0 || loc.col > (this.col - 1))
             return false;
         else
-            return (loc == rider.location);
+            return rider != null && (loc.equals(rider.location));
+    }
+
+    public void update() {
+        toDrive();
     }
 
 
